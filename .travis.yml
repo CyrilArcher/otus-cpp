@@ -1,0 +1,9 @@
+language: cpp
+before_script:
+  - sudo apt-get install -y libboost-test-dev
+  - sudo apt-get install -y libgtest-dev
+script:
+  - cmake helloworld
+  - cmake --build helloworld
+  - cmake --build helloworld --target test
+  - cmake --build helloworld --target package
