@@ -39,6 +39,14 @@ target_compile_definitions(boost_test_executable PRIVATE "BOOST_TEST_DYN_LINK=1"
 target_link_libraries(boost_test_executable ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 target_link_libraries(google_test_executable ${GTEST_LIBRARIES} pthread)
 
+install(TARGETS helloworld RUNTIME DESTINATION bin)
+
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_CONTACT dywedodd@gmail.com)
+
+include(CPack)
+
 enable_testing()
 add_test(NAME test_version1 COMMAND boost_test_executable)
 add_test(NAME test_version2 COMMAND google_test_executable)
