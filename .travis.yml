@@ -6,7 +6,7 @@ before_script:
   - sudo cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
-  - cd cd $TRAVIS_BUILD_DIR
+  - cd $TRAVIS_BUILD_DIR
 script:
   - cmake helloworld
   - cmake --build helloworld
