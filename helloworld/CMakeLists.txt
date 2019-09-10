@@ -6,40 +6,28 @@ ELSE()
     project(helloworld VERSION 1)
 ENDIF()
 
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 find_package(GTest REQUIRED)
 configure_file(version.h.in version.h)
 
-add_executable(helloworld_executable main.cpp)
-add_executable(boost_test_executable boost_test_version.cpp)
-add_executable(google_test_executable google_test_version.cpp)
+add_executable(helloworld main.cpp)
+add_executable(test_ex test_version.cpp)
 
 target_include_directories(
-    helloworld_executable
+    helloworld
     PRIVATE 
     ${CMAKE_BINARY_DIR}
 )
 
 target_include_directories(
-    boost_test_executable
-    PRIVATE 
-    ${CMAKE_BINARY_DIR}
-    ${Boost_INCLUDE_DIR}
-)
-
-target_include_directories(
-    google_test_executable
+    test_ex
     PRIVATE
     ${CMAKE_BINARY_DIR}
     ${GTEST_INCLUDE_DIRS}
 )
 
-target_compile_definitions(boost_test_executable PRIVATE "BOOST_TEST_DYN_LINK=1")
+target_link_libraries(test_ex ${GTEST_LIBRARIES} pthread)
 
-target_link_libraries(boost_test_executable ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
-target_link_libraries(google_test_executable ${GTEST_LIBRARIES} pthread)
-
-install(TARGETS helloworld_executable RUNTIME DESTINATION bin)
+install(TARGETS helloworld RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
@@ -48,5 +36,4 @@ set(CPACK_PACKAGE_CONTACT dywedodd@gmail.com)
 include(CPack)
 
 enable_testing()
-add_test(NAME test_version1 COMMAND boost_test_executable)
-add_test(NAME test_version2 COMMAND google_test_executable)
+add_test(NAME test_version COMMAND test_ex)
