@@ -25,7 +25,8 @@ target_include_directories(
     ${GTEST_INCLUDE_DIRS}
 )
 
-target_link_libraries(test_ex ${GTEST_LIBRARIES} pthread)
+find_package(Threads)
+target_link_libraries(test_ex ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS helloworld_ex RUNTIME DESTINATION bin)
 
