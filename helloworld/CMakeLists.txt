@@ -9,11 +9,11 @@ ENDIF()
 find_package(GTest REQUIRED)
 configure_file(version.h.in version.h)
 
-add_executable(helloworld main.cpp)
+add_executable(helloworld_ex main.cpp)
 add_executable(test_ex test_version.cpp)
 
 target_include_directories(
-    helloworld
+    helloworld_ex
     PRIVATE 
     ${CMAKE_BINARY_DIR}
 )
@@ -27,7 +27,7 @@ target_include_directories(
 
 target_link_libraries(test_ex ${GTEST_LIBRARIES} pthread)
 
-install(TARGETS helloworld RUNTIME DESTINATION bin)
+install(TARGETS helloworld_ex RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
