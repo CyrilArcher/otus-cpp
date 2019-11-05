@@ -19,6 +19,6 @@ private:
     std::array<Byte, bytes_number> bytes_; 
 };
 
-std::ostream& operator<<(std::ostream& os, const Ipv4& ip);
+std::ostream& operator<<(std::ostream&, const Ipv4&);
 
 #endif

@@ -28,3 +28,9 @@ std::string Ipv4::to_str() const
         + "." + std::to_string(bytes_.at(third))
         + "." + std::to_string(bytes_.at(fourth));
 }
+
+std::ostream& operator<<(std::ostream& os, const Ipv4 ip)
+{
+    os << ip.to_str();
+    return os;
+}
