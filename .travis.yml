@@ -4,7 +4,7 @@ before_script:
   - cd /usr/src/gtest
   - sudo cmake CMakeLists.txt
   - sudo make
-  - sudo make install
+  - sudo cp *.a /usr/lib
 script:
   - cd $TRAVIS_BUILD_DIR/ip_filter
   - mkdir build
