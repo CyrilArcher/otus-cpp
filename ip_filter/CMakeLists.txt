@@ -16,16 +16,16 @@ add_library(
     ip_parser STATIC
     $<TARGET_OBJECTS:byte_parser>
     $<TARGET_OBJECTS:ipv4>
-    ip_parser.cpp
-)
+    ip_parser.cpp)
+
 add_library(input_reader STATIC input_reader.cpp)
 target_link_libraries(input_reader ip_parser)
 
 add_executable(
     byte_parser_test
     $<TARGET_OBJECTS:byte_parser>
-    byte_parser_test.cpp
-)
+    byte_parser_test.cpp)
+
 target_link_libraries(byte_parser_test ${general_libs})
 
 add_executable(ip_parser_test ip_parser_test.cpp)
@@ -36,6 +36,12 @@ target_link_libraries(input_reader_test input_reader ${general_libs})
 
 add_executable(ip_filter main.cpp)
 target_link_libraries(ip_filter input_reader)
+
+set_target_properties(
+    ipv4 byte_parser ip_parser input_reader byte_parser_test
+    ip_parser_test input_reader_test ip_filter
+    PROPERTIES CXX_STANDARD 14
+    CXX_STANDARD_REQUIRED ON)
 
 install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
