@@ -1,4 +1,5 @@
 #include "ipv4.h"
+#include <algorithm>
 
 Ipv4::Ipv4(const std::array<Byte, bytes_number>& bytes) noexcept
     : bytes_(bytes)
@@ -17,6 +18,11 @@ bool Ipv4::operator>(const Ipv4& rhs) const noexcept
 Ipv4::Byte Ipv4::get_byte(Byte_number bn) const noexcept
 {
     return bytes_.at(bn);
+}
+
+bool Ipv4::contains(Byte byte) const noexcept
+{
+    return std::find(bytes_.cbegin(), bytes_.cend(), byte) != bytes_.cend();
 }
 
 std::string Ipv4::to_str() const noexcept

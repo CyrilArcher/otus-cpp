@@ -34,6 +34,17 @@ target_link_libraries(ip_parser_test ip_parser ${general_libs})
 add_executable(input_reader_test input_reader_test.cpp)
 target_link_libraries(input_reader_test input_reader ${general_libs})
 
+add_executable(ip_filter main.cpp)
+target_link_libraries(ip_filter input_reader)
+
+install(TARGETS ip_filter RUNTIME DESTINATION bin)
+
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_CONTACT dywedodd@gmail.com)
+
+include(CPack)
+
 enable_testing()
 add_test(NAME byte_parser_test COMMAND byte_parser_test)
 add_test(NAME ip_parser_test COMMAND ip_parser_test)

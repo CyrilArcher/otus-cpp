@@ -15,11 +15,12 @@ public:
     bool operator==(const Ipv4&) const noexcept;
     bool operator>(const Ipv4&) const noexcept;
     Byte get_byte(const Byte_number) const noexcept;
+    bool contains(Byte byte) const noexcept;
     std::string to_str() const noexcept;
 private:
     Bytes bytes_; 
 };
 
-std::ostream& operator<<(std::ostream&, const Ipv4&);
+std::ostream& operator<<(std::ostream&, const Ipv4&) noexcept;
 
 #endif
