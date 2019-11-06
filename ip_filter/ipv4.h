@@ -8,7 +8,8 @@ class Ipv4 {
 public:
     static const int bytes_number = 4;
     using Byte = unsigned char;
-    enum Byte_number : int;
+    using Bytes = std::array<Byte, bytes_number>;
+    enum Byte_number {first, second, third, fourth};
 
     Ipv4(const std::array<Byte, bytes_number>&);
     bool operator==(const Ipv4&) const;
@@ -16,7 +17,7 @@ public:
     Byte get_byte(const Byte_number) const;
     std::string to_str() const;
 private:
-    std::array<Byte, bytes_number> bytes_; 
+    Bytes bytes_; 
 };
 
 std::ostream& operator<<(std::ostream&, const Ipv4&);
