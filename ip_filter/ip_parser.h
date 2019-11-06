@@ -10,7 +10,7 @@ public:
 private:
     void validate_byte_len(const std::size_t len) const;
     static const char bytes_separator{'.'};
-    Byte_parser byte_parser;
+    const Byte_parser byte_parser{};
 };
 
 #endif

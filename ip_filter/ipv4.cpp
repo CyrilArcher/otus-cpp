@@ -1,27 +1,25 @@
 #include "ipv4.h"
 
-enum Byte_number : int {first, second, third, fourth};
-
-Ipv4::Ipv4(const std::array<Byte, bytes_number>& bytes)
+Ipv4::Ipv4(const std::array<Byte, bytes_number>& bytes) noexcept
     : bytes_(bytes)
 {}
 
-bool Ipv4::operator==(const Ipv4& rhs) const
+bool Ipv4::operator==(const Ipv4& rhs) const noexcept
 {
     return bytes_ == rhs.bytes_;
 }
 
-bool Ipv4::operator>(const Ipv4& rhs) const
+bool Ipv4::operator>(const Ipv4& rhs) const noexcept
 {
     return bytes_ > rhs.bytes_;
 }
 
-Ipv4::Byte Ipv4::get_byte(Byte_number bn) const
+Ipv4::Byte Ipv4::get_byte(Byte_number bn) const noexcept
 {
     return bytes_.at(bn);
 }
 
-std::string Ipv4::to_str() const
+std::string Ipv4::to_str() const noexcept
 {
     return std::to_string(bytes_.at(first))
         + "." + std::to_string(bytes_.at(second))
@@ -29,7 +27,7 @@ std::string Ipv4::to_str() const
         + "." + std::to_string(bytes_.at(fourth));
 }
 
-std::ostream& operator<<(std::ostream& os, const Ipv4 ip)
+std::ostream& operator<<(std::ostream& os, const Ipv4& ip) noexcept
 {
     os << ip.to_str();
     return os;

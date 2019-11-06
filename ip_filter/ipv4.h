@@ -11,11 +11,11 @@ public:
     using Bytes = std::array<Byte, bytes_number>;
     enum Byte_number {first, second, third, fourth};
 
-    Ipv4(const std::array<Byte, bytes_number>&);
-    bool operator==(const Ipv4&) const;
-    bool operator>(const Ipv4&) const;
-    Byte get_byte(const Byte_number) const;
-    std::string to_str() const;
+    Ipv4(const std::array<Byte, bytes_number>&) noexcept;
+    bool operator==(const Ipv4&) const noexcept;
+    bool operator>(const Ipv4&) const noexcept;
+    Byte get_byte(const Byte_number) const noexcept;
+    std::string to_str() const noexcept;
 private:
     Bytes bytes_; 
 };

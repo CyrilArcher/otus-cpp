@@ -3,7 +3,7 @@
 
 class ByteParserTest : public ::testing::Test {
 protected:
-    Byte_parser parser;
+    const Byte_parser parser{};
 };
 
 TEST_F(ByteParserTest, ParseThrowsIfByteStringContainsNonDigitSymbols) {

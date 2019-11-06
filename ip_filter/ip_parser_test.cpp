@@ -3,7 +3,7 @@
 
 class IpParserTest : public ::testing::Test {
 protected:
-    Ip_parser parser;
+    const Ip_parser parser{};
     const std::string ip_str{"251.62.13.4"};
 };
 

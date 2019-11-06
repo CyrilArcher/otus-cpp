@@ -18,6 +18,8 @@ add_library(
     $<TARGET_OBJECTS:ipv4>
     ip_parser.cpp
 )
+add_library(input_reader STATIC input_reader.cpp)
+target_link_libraries(input_reader ip_parser)
 
 add_executable(
     byte_parser_test
@@ -26,12 +28,13 @@ add_executable(
 )
 target_link_libraries(byte_parser_test ${general_libs})
 
-add_executable(
-    ip_parser_test
-    ip_parser_test.cpp
-)
+add_executable(ip_parser_test ip_parser_test.cpp)
 target_link_libraries(ip_parser_test ip_parser ${general_libs})
+
+add_executable(input_reader_test input_reader_test.cpp)
+target_link_libraries(input_reader_test input_reader ${general_libs})
 
 enable_testing()
 add_test(NAME byte_parser_test COMMAND byte_parser_test)
 add_test(NAME ip_parser_test COMMAND ip_parser_test)
+add_test(NAME input_reader_test COMMAND input_reader_test)
